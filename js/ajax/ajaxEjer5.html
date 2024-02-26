@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8" />
+    <title>Ejercicio 5 JSON y PHP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../estilosCSS/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        //EFECTOS JQUERY
+        //Cuado se pasa el raton por encima del boton este se hará  más grande y al quitarlo volverá a su tamaño
+        $(document).ready(function(){        
+            $("#click").hover(function(){
+                $(this).animate({ fontSize: "20px" }, "fast"); 
+            }, function(){
+                $(this).animate({ fontSize: "16px" }, "fast"); 
+            
+            });    
+        });
+    </script>
+   <script>
+        //JAVA SCRIPT
+        //funcion principal funciona cuando se carga el documento gracias a onload
+        function principal() {
+            document.getElementById("click").addEventListener("click",info);
+        }
+        // funcion para cuando se pulsa el botn
+        function info() {
+            //solicitud HTTP
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                // para saber si la solicitud se ha cargado correctamente 
+                if (this.readyState == 4 && this.status == 200) {
+                    //si está OK habrá que parsalo a JSON los datos del PHP de phpYajax
+                    var viajes = JSON.parse(this.responseText);
+                    // Tabla para los resultados en JSON 
+                    var tabla = "<table border='1'>";
+                        //cabecera de la tabla
+                    tabla += "<tr> <th>Agencia de Viajes</th> <th>Telégono</th> <th>Dirección email</th> <th>Fundación</th> <th>País</th> <th>Especialista</th></tr>";
+                        //datos de la tabla que viene del archivo PHP
+                    tabla += "<tr><td>" + viajes.nombre + "</td><td>" + viajes.telefono + "</td><td>" + viajes.email + "</td><td>" + viajes.fundacion + "</td><td>" + viajes.pais + "</td><td>" + viajes.especialista + "</td></tr>";
+                    tabla += "</table>";
+                    // seleccionamos los datos de "datos" para adjuntarlos en la taba
+                    document.getElementById("datos").innerHTML = tabla;
+                }
+            }
+            //se cjen los tados del ducumento PHP y se envian
+            xhr.open("GET", "phpYajax.php", true);
+            xhr.send();
+        }
+    </script>
+</head>
+<!--con onload, LLamo a la funcion principal para que el boton funcione y se muestre la tabla antes programada-->
+<body onload="principal()"> 
+    
+    <div class="mx-auto p-10">
+    <div class="logo"><img src="../imagnes/vuelo-en-avion.png" style="width:5%"> <p>FINDING DREAMS, AGENCIA DE VIAJES</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-xl p-10 mt-5">
+    <button id="click" class="btn-ajax">Información</button>
+    <div id="datos"></div>
+    </div>
+    
+
+
+</body>
+
+</html>
+
+
+

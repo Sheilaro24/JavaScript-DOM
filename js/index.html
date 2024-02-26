@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envio de datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="././estilosCSS/estilos.css">
+    <script src="appDOM.js"></script>  
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>    
+        //EFECTOS JQUERY
+        //Transición más letna para la siguiente pagina
+        $(document).ready(function(){
+            $("a[href='./ajax/ajaxEjer5.html']").click(function(event){
+            event.preventDefault(); 
+            var nextPage = $(this).attr("href");
+            $("body").fadeOut(500, function(){ //500 milisegundos en hacer la transación
+                window.location.href = nextPage; 
+                });
+            });
+            });
+        
+        //Cuado se pasa el raton por encima del boton este se hará  más grande y al quitarlo volverá a su tamaño
+        $(document).ready(function(){
+            $("#botones button").hover(function(){
+            $(this).animate({ fontSize: "20px" }, "fast"); // Animación al pasar el mouse sobre el botón
+            }, 
+            function(){
+                $(this).animate({ fontSize: "16px" }, "fast"); // Restaurar tamaño original al quitar el mouse del botón
+             });
+        });
+    </script>
+    
+</head>
+<body >
+
+    <div class="max-w-3xl mx-auto p-10">
+    </br>
+       
+        <div class="logo"><img src="./imagnes/vuelo-en-avion.png" style="width:20%"> <p>FINDING DREAMS, AGENCIA DE VIAJES</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-xl p-10 mt-5">
+           <!--FORMULARIO-->
+            <form id="formulario" class="space-y-3">
+            
+            <div class="flex flex-col space-y-2">
+                    
+                <label for="nombre" class="font-regular font-medium">Nombre Usuario:</label>
+                <input id="nombre" type="text" name="nombre" placeholder="Nombre usuario" class="border border-gray-300 px-3 py-2 rounded-lg"  />    
+            </div>
+            
+            <div class="flex flex-col space-y-2">             
+                <label for="password" class="font-regular font-medium">Contraseña:</label>
+                <input id="password" type="password" name="password" placeholder="Contraseña" class="border border-gray-300 px-3 py-2 rounded-lg"  />           
+            </div>
+
+            <div class="flex flex-col space-y-2">    
+                <label for="email" class="font-regular font-medium">Email:</label>
+                <input id="email" type="email" name="email" placeholder="Tu email" class="border border-gray-300 px-3 py-2 rounded-lg"  />
+            </div>
+
+            <div class="flex flex-col space-y-2">                
+                <label for="asunto" class="font-regular font-medium">Asunto:</label>
+                <input id="asunto" type="text" name="asunto" placeholder="Asunto" class="border border-gray-300 px-3 py-2 rounded-lg" />    
+            </div>
+
+            <div class="flex flex-col space-y-2">        
+                <label for="mensaje" class="font-regular font-medium">Mensaje:</label>
+                <textarea id="mensaje" type="text" name="mensaje" placeholder="Mensaje" class="border border-gray-300 px-3 py-2 rounded-lg h-36"></textarea>  
+            </div>
+        
+            <!--BOTONES-->
+                <div id="botones" class="flex gap-5">
+              
+        
+                <!--BOTON ENVIAR-->
+                    <button type="submit" class="btn btn-success" class="w-6 h-6" >Success</button>
+                 <!--BOTON BORRAR-->
+                    <button type="reset" class="btn btn-danger" class="w-6 h-6">borrar</button>
+               
+                </div>
+            </br>      
+                <div>
+                    <a href="./ajax/ajaxEjer5.html">
+                        Para más información    
+                    </a>
+                </div>    
+            </form>
+        </div>
+    </div>
+
+
+
+     
+</body>
+</html>
